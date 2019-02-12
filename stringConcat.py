@@ -11,9 +11,9 @@ def stringConcat(splitBy='\n', joinBy=', ', wrapBy="'"):
             outputString+=("{wrap}{element}{wrap}{join}"
                            .format(wrap=wrapBy, element=s, join=joinBy))
     if len(outputString) > 0:
-        outputString=outputString[:-2]
-
+        outputString=outputString[:-len(joinBy)]
     pyperclip.copy(outputString)
 
 if __name__ == '__main__':
     stringConcat()
+    print('Concated string copied to clipboard')
