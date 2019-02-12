@@ -9,7 +9,7 @@ def stringConcat(splitBy='\n', joinBy=', ', wrapBy="'"):
     for s in arr:
         if len(s) > 0:
             outputString+=("{wrap}{element}{wrap}{join}"
-                           .format(wrap=wrapBy, element=s, join=joinBy))
+                           .format(wrap=wrapBy, element=s.strip(), join=joinBy))
     if len(outputString) > 0:
         outputString=outputString[:-len(joinBy)]
     pyperclip.copy(outputString)
