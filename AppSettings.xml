@@ -3,7 +3,11 @@
 	<databaseSettings>
 		<database databaseName="EUD" driver="SQL Server Native Client 11.0" server="153.112.60.15" trustedConnection="true" />
 		<database databaseName="SAP" driver="SQL Server Native Client 11.0" server="153.112.61.75" trustedConnection="true" />
+		<database databaseName="GB20" driver="SQL Server Native Client 11.0" server="153.112.18.152" trustedConnection="true"/>
+		<database databaseName="GB23" driver="SQL Server Native Client 11.0" server="153.112.18.152" trustedConnection="true"/>
+		<database databaseName="GB25" driver="SQL Server Native Client 11.0" server="153.112.18.152" trustedConnection="true"/>
 		<database databaseName="GB309" driver="SQL Server Native Client 11.0" server="153.112.18.152" trustedConnection="true"/>
+		<database databaseName="GB16" driver="SQL Server Native Client 11.0" server="153.112.18.152" trustedConnection="true"/>
 	</databaseSettings>
 	<uiSettings>
 		<headerRow fontColor="FFFFFF" backgroundColor="34495E" />
