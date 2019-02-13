@@ -139,6 +139,9 @@ for databaseName in databaseNames:
         for i in range(0, columnCount):
             dataSheet.cell(row = rowIndex, column = i + 1).value = row[i]
         rowIndex += 1
+
+    cornerCell = dataSheet['A2']
+    dataSheet.freeze_panes = cornerCell
     
     dbConnection.close()
 
