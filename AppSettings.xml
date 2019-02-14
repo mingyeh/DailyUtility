@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 	<databaseSettings>
-		<database databaseName="EUD" driver="SQL Server Native Client 11.0" server="153.112.60.15" trustedConnection="true" />
-		<database databaseName="SAP" driver="SQL Server Native Client 11.0" server="153.112.61.75" trustedConnection="true" />
-		<database databaseName="GB20" driver="SQL Server Native Client 11.0" server="153.112.18.152" trustedConnection="true"/>
-		<database databaseName="GB23" driver="SQL Server Native Client 11.0" server="153.112.18.152" trustedConnection="true"/>
-		<database databaseName="GB25" driver="SQL Server Native Client 11.0" server="153.112.18.152" trustedConnection="true"/>
-		<database databaseName="GB309" driver="SQL Server Native Client 11.0" server="153.112.18.152" trustedConnection="true"/>
-		<database databaseName="GB16" driver="SQL Server Native Client 11.0" server="153.112.18.152" trustedConnection="true"/>
+		<database databaseName="EROS" driver="SQL Server Native Client 11.0" server="127.0.0.1" trustedConnection="true" />
+		<database databaseName="SAP" driver="SQL Server Native Client 11.0" server="127.0.0.1" trustedConnection="true" />
+		<database databaseName="JIN" driver="SQL Server Native Client 11.0" server="127.0.0.1" trustedConnection="true"/>
+		<database databaseName="TOM" driver="SQL Server Native Client 11.0" server="127.0.0.1" trustedConnection="true"/>
+		<database databaseName="KATHIE" driver="SQL Server Native Client 11.0" server="127.0.0.1" trustedConnection="true"/>
+		<database databaseName="JUSTIN" driver="SQL Server Native Client 11.0" server="127.0.0.1" trustedConnection="true"/>
+		<database databaseName="SEAN" driver="SQL Server Native Client 11.0" server="127.0.0.1" trustedConnection="true"/>
 	</databaseSettings>
 	<uiSettings>
 		<headerRow fontColor="FFFFFF" backgroundColor="34495E" />
