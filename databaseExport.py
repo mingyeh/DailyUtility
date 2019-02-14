@@ -2,7 +2,7 @@ import os.path
 import pyodbc
 from bs4 import BeautifulSoup
 import openpyxl
-from openpyxl.styles import PatternFill, colors, Font
+from openpyxl.styles import PatternFill, colors, Font, Alignment
 import pyperclip
 import sys
 import re
@@ -146,8 +146,18 @@ for databaseName in databaseNames:
     dbConnection.close()
 
 #Save SQL script
+wrapAlignment = Alignment(wrapText = False, shrinkToFit = False, horizontal = 'left', vertical = 'top')
 sqlSheet = wb.create_sheet(title='SQL', index=len(wb.worksheets)-1)
-sqlSheet['A1'].value = sql
+lineIndex = 1
+findTabsRegEx = r'^\t+'
+for sqlLine in sql.split('\n'):
+    tabsCount = 0
+    tabPrefixMatch = re.search(findTabsRegEx, sqlLine)
+    if tabPrefixMatch is not None:
+        tabsCount = len(tabPrefixMatch.group(0))
+    sqlSheet.cell(row = lineIndex, column = 1 + tabsCount).alignment = wrapAlignment
+    sqlSheet.cell(row = lineIndex, column = 1 + tabsCount).value = sqlLine
+    lineIndex += 1
 
 wb.save(fileName)
 print('Data saved as ' + fileName)
