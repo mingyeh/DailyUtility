@@ -8,7 +8,7 @@ import sys
 import re
 
 def printUsage():
-    print('Usage:\nCopy the SQL script needs to run, and execute "exportFromDB db=db_name_in_config" or "exportFromDB tc=truck_centerID"')
+    print('Usage:\nCopy the SQL script needs to run, and execute "python databaseExport.py db=db_name_in_config")
     exit()
 
 def getDatabaseConfiguration(databaseName):
