@@ -37,7 +37,7 @@ if len(sql) == 0:
     print('ERROR: Please copy SQL script to clipboard before execution.')
     exit()
 
-print('Acout to execute:\n{sql}\n'.format(sql = sql))
+print('About to execute:\n{sql}\n'.format(sql = sql))
 
 #Create Excel file
 fileName = 'dataExtract.xlsx'

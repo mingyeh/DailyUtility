@@ -7,7 +7,7 @@ Here is some information that could be helpful for the newbies.
 
 ### checkDatabase
 
-This is script to fetch the type of database, and useless who does not work in DP team.
+This is script to fetch the type of database, and useless to who does not work in DP team.
 
 **Usage:**
 
@@ -55,3 +55,63 @@ Press any key to exit
 ```
 
 The Truck Center database in Production Environment will be mark red.
+
+### databaseExport
+This is script used to export result of SQL script execution to Excel file.
+
+**Usage**
+
+1. Add configuration of database in AppSettings.xml if necessary.
+2. Copy the SQL script to clipboard.
+3. Execute script in command line with db parameter.
+
+**Example**
+
+```
+C:\code\DailyUtility>python databaseExport.py db=GB20,GB23,GB25,GB309,GB16
+Acout to execute:
+select
+        d.DealerID,
+        d.Dealer,
+        d.GDSDealerID,
+        d.DealerCode,
+        c.Country,
+        tc.TruckCenter
+from rnvwDealers as d
+        left join eud.dbo.adtbCountry as c on d.CountryID = c.CountryID
+        left join eud.dbo.adtbTruckCenters as tc on d.TruckCenterID = tc.TruckCenterID
+
+Fetching data from GB20
+
+Fetching data from GB23
+
+Fetching data from GB25
+
+Fetching data from GB309
+
+Fetching data from GB16
+
+Data saved as dataExtract.xlsx
+```
+
+If the SQL script needs to be executed in multiple databases, please separate database names with comma(,) in db parameter.
+
+The database names in db parameter must be identical with the databaseName value in AppSettings.xml
+
+Execution result of each database will be listed in individual sheet in Excel file.
+
+![Data Export](https://raw.githubusercontent.com/mingyeh/DailyUtility/master/screendumps/data_export.jpg)
+
+The SQL script will be listed in *"SQL"* Sheet in Excel file.
+
+![SQL Script](https://raw.githubusercontent.com/mingyeh/DailyUtility/master/screendumps/sql.jpg)
+
+The header style in Excel file can be set in AppSettings.xml
+
+```XML
+<uiSettings>
+	<headerRow fontColor="FFFFFF" backgroundColor="34495E" />
+	<highLightRow fontColor="FFFFFF" backgroundColor="D35400" />
+</uiSettings>
+```
+
