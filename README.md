@@ -115,3 +115,21 @@ The header style in Excel file can be set in AppSettings.xml
 </uiSettings>
 ```
 
+### databaseGetDef
+
+**Usage**
+
+```
+python databaseGetDef.py
+```
+
+Input database name when prompted (Add corresponding configuration in AppSettings.xml before execution)
+
+Input the name of object when prompted, as the screen dump listed underneath.
+
+The script supports following object types:
+* Function
+* Stored procedure
+* View
+
+![Fetch object definition](https://raw.githubusercontent.com/mingyeh/DailyUtility/master/screendumps/get_def.jpg)
