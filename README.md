@@ -133,3 +133,5 @@ The script supports following object types:
 * View
 
 ![Fetch object definition](https://raw.githubusercontent.com/mingyeh/DailyUtility/master/screendumps/get_def.jpg)
+
+Input *exit* to quit the script.
