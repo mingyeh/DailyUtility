@@ -117,6 +117,14 @@ The header style in Excel file can be set in AppSettings.xml
 
 ### databaseGetDef
 
+This script is used to generate creating script of database objects.
+
+The script supports following object types:
+
+- Function
+- Stored procedure
+- View
+
 **Usage**
 
 ```
@@ -127,11 +135,22 @@ Input database name when prompted (Add corresponding configuration in AppSetting
 
 Input the name of object when prompted, as the screen dump listed underneath.
 
-The script supports following object types:
-* Function
-* Stored procedure
-* View
-
 ![Fetch object definition](https://raw.githubusercontent.com/mingyeh/DailyUtility/master/screendumps/get_def.jpg)
 
 Input *exit* to quit the script.
+
+### excel2MarkDownTable
+
+This script is used to convert table in Excel file to MarkDown table snippet.
+
+**Usage:**
+
+1. Create table in Excel file and save as "sample_data.xls" in current directory.
+
+   ![Table in Excel](https://raw.githubusercontent.com/mingyeh/DailyUtility/master/screendumps/excel_table.jpg)
+
+2. Execute the script.
+   ![Table in Excel](https://raw.githubusercontent.com/mingyeh/DailyUtility/master/screendumps/convert_markdown.jpg)
+3. The MarkDown snippet will be output in console, and copied to clipboard as well.
+   ![MarkDown Table](https://raw.githubusercontent.com/mingyeh/DailyUtility/master/screendumps/mark_down.jpg)
+
