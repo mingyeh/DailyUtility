@@ -54,7 +54,7 @@ DMS:    GDS
 Press any key to exit
 ```
 
-The Truck Center database in Production Environment will be mark red.
+The Truck Center database in Production Environment will be marked red.
 
 ### databaseExport
 This is script used to export result of SQL script execution to Excel file.
@@ -150,7 +150,9 @@ This script is used to convert table in Excel file to MarkDown table snippet.
    ![Table in Excel](https://raw.githubusercontent.com/mingyeh/DailyUtility/master/screendumps/excel_table.jpg)
 
 2. Execute the script.
+
    ![Table in Excel](https://raw.githubusercontent.com/mingyeh/DailyUtility/master/screendumps/convert_markdown.jpg)
 3. The MarkDown snippet will be output in console, and copied to clipboard as well.
+
    ![MarkDown Table](https://raw.githubusercontent.com/mingyeh/DailyUtility/master/screendumps/mark_down.jpg)
 
