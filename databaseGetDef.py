@@ -71,7 +71,7 @@ XXWXX			1.0				XX-XX-20XX		Ming Ye				PBI XXXX:
     if not withComment:
         definitionFile.write(comment)
     for row in definitionRows:
-        definitionFile.write(row[0].replace('\n', ''))
+        definitionFile.write(row[0].replace('\r\n', '\n'))
     
     definitionFile.write(scriptFooter)
     definitionFile.close()
