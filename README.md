@@ -164,7 +164,7 @@ This script is used to concatenate the data parsed from Clipboard based on param
 
 1. Select the data cells in Excel spreadsheet you'd like to concatenate and copy the data to Clipboard (either by contect menu or shortcut key).
 
-   ![Table in Excel](https://raw.githubusercontent.com/mingyeh/DailyUtility/master/screendumps/data_export.jpg)
+   ![Table in Excel](https://raw.githubusercontent.com/mingyeh/DailyUtility/master/screendumps/data_to_concat.jpg)
 
 2. Execute the script.
 
