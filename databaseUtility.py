@@ -25,6 +25,20 @@ def getDatabaseConfiguration(databaseName):
 
     return result
 
+def getDatabaseConnectionFromParam(server, userName, password, database, trustedConnection, driver = 'SQL Server Native Client 11.0'):
+    if trustedConnection == 'true':
+        return pyodbc.connect('Driver={driver};'
+                'Server={server};'
+                'Database={database};Trusted_Connection=yes'.format(driver = driver, server = server,
+                                                                    database = database))
+    else:
+        return pyodbc.connect('Driver={driver};'
+                'Server={server};'
+                'Database={database};'
+                'UID={username};'
+                'PWD={password}'.format(driver = driver, server = server, database = database,
+                                        username = userName, password = password))
+
 def getDatabaseConnection(databaseName):
     configuration = getDatabaseConfiguration(databaseName)
     if configuration is not None:

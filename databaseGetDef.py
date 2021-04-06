@@ -65,7 +65,7 @@ XXWXX			1.0				XX-XX-20XX		Ming Ye				PBI XXXX:
 **********************************************************************************************************************/
 '''
     
-    definitionFile = open('{obj}.sql'.format(obj = objectName), 'w')
+    definitionFile = open('{obj}_{dbName}.sql'.format(obj = objectName, dbName = databaseName), 'w')
     definitionFile.write(scriptHeader)
     withComment = str(definitionRows[0][0]).strip().startswith('/***')
     if not withComment:
@@ -75,7 +75,7 @@ XXWXX			1.0				XX-XX-20XX		Ming Ye				PBI XXXX:
     
     definitionFile.write(scriptFooter)
     definitionFile.close()
-    print('Object saved as {obj}.sql'.format(obj = objectName))
+    print('Object saved as {obj}_{dbName}.sql'.format(obj = objectName, dbName = databaseName))
 
 databaseConnection.close()
 print('Database {db} disconnected.'.format(db = databaseName))

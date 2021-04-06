@@ -5,7 +5,7 @@ import databaseUtility
 
 init()
 
-databases = input('Please input database name separated by comma(,):')
+databases = input('Please input database name separated by comma(,):').replace(' ', '')
 
 conn = databaseUtility.getDatabaseConnection('EUD')
 cursor = conn.cursor()

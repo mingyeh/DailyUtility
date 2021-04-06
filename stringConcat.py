@@ -1,8 +1,8 @@
 import pyperclip
 
-perLineCount = 6
+perLineCount = 0
 
-def stringConcat(splitBy='\n', joinBy=', ', wrapBy="'"):
+def stringConcat(splitBy='\n', joinBy=';', wrapBy=""):
     inputString = pyperclip.paste()
     arr = inputString.split(splitBy)
 
