@@ -39,6 +39,23 @@ def getDatabaseConnectionFromParam(server, userName, password, database, trusted
                 'PWD={password}'.format(driver = driver, server = server, database = database,
                                         username = userName, password = password))
 
+def getDatabaseConnectionFromEUD(databaseName):
+    sqlGetDatabaseInfo = """select
+    s.IPAddress
+from adtbTruckCenters as tc
+    left join adtbServers as s on tc.ServerName = s.ServerName
+where
+    tc.SqlDb = '{db}'""".format(db = databaseName)
+
+    eudConnection = getDatabaseConnection('EUD')
+    eudCursor = eudConnection.cursor()
+    eudCursor.execute(sqlGetDatabaseInfo)
+    ipAddress = eudCursor.fetchval()
+    if ipAddress is not None and ipAddress != '':
+        return getDatabaseConnectionFromParam(ipAddress, '', '', databaseName, 'true')
+    else:
+        return None
+
 def getDatabaseConnection(databaseName):
     configuration = getDatabaseConfiguration(databaseName)
     if configuration is not None:
@@ -54,6 +71,8 @@ def getDatabaseConnection(databaseName):
                 'UID={username};'
                 'PWD={password}'.format(driver = configuration['driver'], server = configuration['server'], database = configuration['database'],
                                         username = configuration['userName'], password = configuration['password']))
+    else:
+        getDatabaseConnectionFromEUD(databaseName)
 
 if __name__ == '__main__':
     print('Begin function verification... \n\nGetting EUD configuration...\n')
@@ -67,5 +86,12 @@ if __name__ == '__main__':
     print(eudCursor.fetchone()[0])
     print('\nClosing EUD connection...\n')
     eudDatabaseConnection.close()
+    print('\nTesting get connection via EUD...\n')
+    tcConnection = getDatabaseConnectionFromEUD('JP385')
+    tcCursor = tcConnection.cursor()
+    tcCursor.execute('select getdate()')
+    print(tcCursor.fetchval())
+    print('\nClosing connection created via EUD...\n')
+    tcConnection.close()
     print('Verification completed.')
     
