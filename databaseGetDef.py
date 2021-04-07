@@ -2,21 +2,16 @@ import pyodbc
 from bs4 import BeautifulSoup
 import databaseUtility
 
-objectTypes = {'TF':'FUNCTION','FN':'FUNCTION', 'IF':'FUNCTION', 'P':'PROCEDURE', 'U':'TABLE', 'V':'VIEW'}
+def GetDatabaseDef(databaseName, objectName):
+    objectTypes = {'TF':'FUNCTION','FN':'FUNCTION', 'IF':'FUNCTION', 'P':'PROCEDURE', 'U':'TABLE', 'V':'VIEW'}
 
-databaseName = input('Please input database from where to get the defination:')
+    databaseConnection = databaseUtility.getDatabaseConnection(databaseName)
+    if databaseConnection is not None:
+        print('Database connected.')
+    else:
+        input('Cannot connect to database specified. Press any key to exit')
+        exit()
 
-databaseConnection = databaseUtility.getDatabaseConnection(databaseName)
-if databaseConnection is not None:
-    print('Database connected.')
-else:
-    print('Cannot connect to database specified.')
-    exit()
-
-while(True):
-    objectName = input('Please input object name:')
-    if objectName.lower() == 'exit':
-        break
     getObjectTypeSql = "select type as objectType from sys.objects where name = '{obj}'".format(obj = objectName)
 
     cursor = databaseConnection.cursor()
@@ -26,13 +21,13 @@ while(True):
 
     objectType = ''
     if objectTypeRow is None:
-        print('Object not found.')
-        continue
+        input('Object not found. Press any key to exist')
+        exit()
     else:
         objectType = str(objectTypeRow.objectType).strip()
         if objectType not in objectTypes.keys():
-            print('The object does not support definition script.')
-            continue
+            input('The object does not support definition script. Press any key to exit.')
+            exit()
 
     cursor.execute('sp_helptext {obj}'.format(obj = objectName))
     definitionRows = cursor.fetchall()
@@ -55,7 +50,7 @@ GO\n""".format(obj = objectName, objType = objectType, objectType = objectTypes[
     scriptFooter = '''GO
 
 if @@TRANCOUNT > 0 
-	COMMIT
+COMMIT
 GO'''
     comment = '''
 /**********************************************************************************************************************
@@ -64,7 +59,7 @@ Release      SP Version        Date             Name    			Remarks
 XXWXX			1.0				XX-XX-20XX		Ming Ye				PBI XXXX:
 **********************************************************************************************************************/
 '''
-    
+
     definitionFile = open('{obj}_{dbName}.sql'.format(obj = objectName, dbName = databaseName), 'w')
     definitionFile.write(scriptHeader)
     withComment = str(definitionRows[0][0]).strip().startswith('/***')
@@ -72,10 +67,16 @@ XXWXX			1.0				XX-XX-20XX		Ming Ye				PBI XXXX:
         definitionFile.write(comment)
     for row in definitionRows:
         definitionFile.write(row[0].replace('\r\n', '\n'))
-    
+
     definitionFile.write(scriptFooter)
     definitionFile.close()
     print('Object saved as {obj}_{dbName}.sql'.format(obj = objectName, dbName = databaseName))
 
-databaseConnection.close()
-print('Database {db} disconnected.'.format(db = databaseName))
+    databaseConnection.close()
+    print('Database {db} disconnected.'.format(db = databaseName))
+    input('Fetching complete. Press any key to exit.')
+
+if __name__ == '__main__':
+    dbName = input('Please input database from where to get the defination:')
+    objName = input('Please input object name:')
+    GetDatabaseDef(dbName, objName)
